@@ -1,0 +1,8 @@
+﻿FROM microsoft/dotnet:latest
+COPY . /app
+WORKDIR /app
+
+ENV ASPNETCORE_URLS http://*:7500
+EXPOSE 7500
+
+ENTRYPOINT ["dotnet", "ezshopperapi.dll"]
