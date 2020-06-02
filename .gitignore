@@ -27,3 +27,5 @@ yarn-error.log*
 
 # generated index files
 index.js
+
+appsettings.json
