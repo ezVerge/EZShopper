@@ -12,6 +12,13 @@ namespace EZShopper.Models
         {
         }
 
+        public DbSet<User> Aisle { get; set; }
+        public DbSet<User> Dept { get; set; }
+        public DbSet<User> Item { get; set; }
+        public DbSet<User> List { get; set; }
+        public DbSet<User> Path { get; set; }
+        public DbSet<User> State { get; set; }
+        public DbSet<User> Store { get; set; }
         public DbSet<User> User { get; set; }
     }
 }

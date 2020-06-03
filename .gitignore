@@ -29,3 +29,5 @@ yarn-error.log*
 index.js
 
 appsettings.json
+appsettings.Development.json
+ValuesController.cs

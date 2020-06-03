@@ -10,7 +10,8 @@ namespace EZShopper.Controllers
     [Route("[controller]")]
     public class EZShopperController : Controller
     {
-        // sample url: http://localhost:44351/ezshopper/user/userId=3
+        // local: http://localhost:5247/ezshopper/user?userId=1
+        // nas: http://192.168.1.250:32781/ezshopper/user/userId=1
 
         //DataMapper _dataMapper = new DataMapper();
 
@@ -21,7 +22,12 @@ namespace EZShopper.Controllers
             _context = context;
         }
 
-        // temp method until actual login logic is in place
+        [HttpGet("login")]
+        public ActionResult GetLogin([FromQuery] string username, [FromQuery] string password)
+        {
+            return Ok(_context.User.Where(u => u.Username == username && u.Password == password).First());
+        }
+
         [HttpGet("user")]
         public ActionResult GetUser([FromQuery] int userId)
         {

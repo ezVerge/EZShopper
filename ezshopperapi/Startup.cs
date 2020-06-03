@@ -1,7 +1,6 @@
 ﻿using EZShopper.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -23,17 +22,17 @@ namespace EZShopper
         {
             // add service and create CORS policy with options
             // ** must appear BEFORE the call to AddMVC **
-            //services.AddCors(options =>
-            //{
-            //    options.AddPolicy("CorsPolicy",
-            //        builder => builder
-            //        .AllowAnyOrigin()
-            //        .AllowAnyMethod()
-            //        .AllowAnyHeader()
-            //        .AllowCredentials()
-            //        );
-            //});
-            
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy",
+                    builder => builder
+                    .AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()
+                    .AllowCredentials()
+                    );
+            });
+
             services.AddDbContext<EZShopperContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
@@ -52,7 +51,7 @@ namespace EZShopper
             }
 
             // global policy - assign here or on each controller through annotations
-            //app.UseCors("CorsPolicy");
+            app.UseCors("CorsPolicy");
 
             app.UseHttpsRedirection();
             app.UseMvc();
