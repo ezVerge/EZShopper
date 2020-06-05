@@ -1,5 +1,5 @@
-import initialState from '../initialState';
-import {LOGIN_SUCCESS, LOGOUT} from './userActions';
+import initialState from 'store/initialState';
+import {LOGIN_SUCCESS, LOGOUT} from 'store/user/userActions';
 
 const userReducers = (state = initialState.user, action) => {
     switch (action.type) {

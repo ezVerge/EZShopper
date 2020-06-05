@@ -1,12 +1,12 @@
 import React from 'react';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import {Typography, Divider} from '@material-ui/core';
-import AuthRoute from './components/AuthRoute';
+import AuthRoute from 'components/AuthRoute';
 
-import NavBar from './components/NavBar';
-import LoginPage from './pages/Login';
-import HomePage from './pages/HomePage';
-// import MyAccount from './pages/MyAccount';
+import NavBar from 'components/NavBar';
+import Login from 'components/Login/LoginContainer';
+import HomePage from 'routes/HomePage';
+// import MyAccount from 'routes/MyAccount';
 
 const IndexPage = () => (
     <>
@@ -23,7 +23,7 @@ const App = () => (
             <Switch>
                 <AuthRoute path="/home" render={HomePage} type="private" />
                 <AuthRoute path="/login" type="guest">
-                    <LoginPage />
+                    <Login/>
                 </AuthRoute>
                 <AuthRoute path="/my-account" type="private">
                     {/*<MyAccount />*/}

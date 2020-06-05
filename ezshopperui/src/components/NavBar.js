@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { AppBar, Toolbar, Button, Typography } from '@material-ui/core';
 
-import { logout } from '../redux/user/userActions';
+import { logout } from 'store/user/userActions';
 import PropTypes from 'prop-types';
 
 class NavBar extends Component {

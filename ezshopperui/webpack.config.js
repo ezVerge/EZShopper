@@ -38,7 +38,7 @@ module.exports = env => {
         plugins: [
             new HtmlWebPackPlugin({
                 filename: './index.html',
-                template: './src/index.html',
+                template: './public/index.html',
                 meta: {
                     viewport: 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no',
                     version: packages.version
@@ -72,6 +72,16 @@ module.exports = env => {
         //     new WatchMissingNodeModulesPlugin('node_modules'),
         //     new webpack.HotModuleReplacementPlugin()
         // ],
+        resolve: {
+            alias: {
+                'root': global.appRoot,
+                'src': `${common.path.sourcePath}`,
+                'components': `${common.path.sourcePath}/components`,
+                'MuiWrappers': `${common.path.sourcePath}/components/MuiWrappers`,
+                'store': `${common.path.sourcePath}/store`,
+                'routes': `${common.path.sourcePath}/routes`
+            }
+        },
         watchOptions: {
             ignored: /node_modules|config\.js|web|build/,
             aggregateTimeout: 300,

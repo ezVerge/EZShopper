@@ -1,4 +1,4 @@
-import {apiRequest} from '../middleware/apiActions';
+import {apiRequest} from 'store/middleware/apiActions';
 
 export const LOGIN = 'LOGIN';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
