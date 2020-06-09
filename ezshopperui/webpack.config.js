@@ -32,6 +32,21 @@ module.exports = env => {
                             loader: 'html-loader'
                         }
                     ]
+                },
+                {
+                    test: /\.(jpeg|jpg|png|gif|svg|ico)$/i,
+                    exclude: /node_modules/,
+                    use: [{
+                        loader: 'file-loader',
+                        options: {
+                            exclude: [
+                                /vendors/
+                            ],
+                            name: '[name].[sha512:hash:base64:7].[ext]',
+                            outputPath: './assets/img/',
+                            publicPath: '/assets/img'
+                        }
+                    }]
                 }
             ]
         },
@@ -76,10 +91,13 @@ module.exports = env => {
             alias: {
                 'root': global.appRoot,
                 'src': `${common.path.sourcePath}`,
+                'common': `${common.path.sourcePath}/common`,
                 'components': `${common.path.sourcePath}/components`,
-                'MuiWrappers': `${common.path.sourcePath}/components/MuiWrappers`,
-                'store': `${common.path.sourcePath}/store`,
-                'routes': `${common.path.sourcePath}/routes`
+                'muiWrappers': `${common.path.sourcePath}/components/MuiWrappers`,
+                'helpers': `${common.path.sourcePath}/helpers`,
+                'img': `${common.path.sourcePath}/media/img`,
+                'routes': `${common.path.sourcePath}/routes`,
+                'store': `${common.path.sourcePath}/store`
             }
         },
         watchOptions: {

@@ -2,13 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {Grid, withStyles} from '@material-ui/core';
 
-const HomePage = props => {
+const MyAccountContainer = props => {
 
     const {classes} = props;
 
     return (
         <Grid item className={classes.grid}>
-            <p>Home</p>
+            <p>My Account</p>
         </Grid>
     );
 
@@ -20,8 +20,8 @@ const styles = () => ({
     }
 });
 
-HomePage.propTypes = {
+MyAccountContainer.propTypes = {
     classes: PropTypes.object
 };
 
-export default (withStyles(styles, {withTheme: true})(HomePage));
+export default (withStyles(styles, {withTheme: true})(MyAccountContainer));

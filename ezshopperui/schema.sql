@@ -130,9 +130,9 @@ END
 
 SET NOCOUNT ON;
 
-IF NOT EXISTS (SELECT * FROM [user] WHERE username = 'stevev')
+IF NOT EXISTS (SELECT * FROM [user] WHERE username = 'steveverge@gmail.com')
 BEGIN
 	INSERT INTO [user] (username, [password], [name], preferredStoreId, joined, [enabled])
-	VALUES ('stevev', 'stevev', 'Steve', 1, CONVERT(DATETIME2, '1968-11-18'), 1);
+	VALUES ('steveverge@gmail.com', 'stevev', 'Steve', 1, CONVERT(DATETIME2, '1968-11-18'), 1);
 	IF @@ERROR = 0 PRINT 'Inserted initial user';
 END

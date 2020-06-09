@@ -5,12 +5,12 @@ import {get} from 'lodash';
 const emptyArray = [];
 const emptyObject = {};
 
-const getRootStateUI = (state) => get(state, 'ui', emptyObject);
+const getRootStateUI = state => get(state, 'ui', emptyObject);
 
 const UISelectorFactory = getUI => ({
     getUI,
 
-    getIsLoading: createSelector(getUI, ui => Boolean(get(ui, 'isLoading', emptyArray).length > 0))
+    getIsLoading: createSelector(getUI, ui => Boolean(get(ui, 'isLoading', false)))
     // getTheme: createSelector(getUI, ui => get(ui, 'theme', SessionStorage.get('theme'))),
     // getIsLoadingNonBlocking: createSelector(getUI, ui => get(last(get(ui, 'loading', emptyArray)), 'nonBlocking', false)),
     // getLoadingMessage: createSelector(getUI, ui => get(last(get(ui, 'loading', emptyArray)), 'message', null)),

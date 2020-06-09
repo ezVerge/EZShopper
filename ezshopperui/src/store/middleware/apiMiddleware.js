@@ -2,8 +2,8 @@ import 'isomorphic-fetch';
 import {API_REQUEST} from 'store/middleware/apiActions';
 import {setLoader} from 'store/ui/uiActions';
 
-// const SERVER_URL = 'http://localhost:5247/ezshopper';
-const SERVER_URL = 'https://localhost:44323/ezshopper';
+// const SERVER_URL = 'http://192.168.1.250:32781/ezshopper'; // nas
+const SERVER_URL = 'https://localhost:44323/ezshopper'; // local
 
 const params = a => {
     let s = [];
@@ -103,19 +103,14 @@ export const apiMiddleware = ({dispatch}) => next => async action => {
     }
 
     try {
-        //http://localhost:9902/ezpacklistapi/? (for debugging through Visual Studio)
-        //http://192.168.1.250:7500/ezpacklistapi/?
         const response = await fetch(fullyQualifiedUrl, options);
-        // const response = {
-        //     user: {
-        //         id: 1,
-        //         firstName: 'Steve',
-        //         lastName: 'Verge',
-        //         username: 'steveverge@gmail.com'
-        //     }
-        // };
-        // const result = await response.json();
-        dispatch(onSuccess(response));
+        // const result = fetch(fullyQualifiedUrl, options)
+        //     .then(response => response.json());
+        // todo: check return code, etc.
+        // test when api is down, wrong result, etc
+        const result = await response.json();
+
+        dispatch(onSuccess(result));
     }
     catch (error) {
         console.log(error);

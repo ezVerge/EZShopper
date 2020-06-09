@@ -8,10 +8,10 @@ const AuthRoute = props => {
     const {isAuthUser, type} = props;
 
     if (type === 'guest' && isAuthUser) {
-        return <Redirect to="/home" />;
+        return <Redirect to="/" />;
     }
     else if (type === 'private' && !isAuthUser) {
-        return <Redirect to="/" />;
+        return <Redirect to="/login" />;
     }
 
     return <Route {...props} />;

@@ -1,47 +1,52 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { AppBar, Toolbar, Button, Typography } from '@material-ui/core';
-
-import { logout } from 'store/user/userActions';
+import React from 'react';
 import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
+import {Link} from 'react-router-dom';
+import {AppBar, Toolbar, Button, Typography} from '@material-ui/core';
+import {logout} from 'store/user/userActions';
+import UserSelectors from 'store/user/userSelectors';
+import {description} from 'root/package.json';
 
-class NavBar extends Component {
-    render() {
-        return (
-            <AppBar position="static" style={{ display: 'flex' }}>
-                <Toolbar>
-                    <Typography variant="h6">My App</Typography>
-                    <div style={{ marginLeft: 'auto' }}>
-                        {this.props.isAuthUser ? (
-                            <>
-                                <Link to="/home">
-                                    <Button color="inherit">Home</Button>
-                                </Link>
-                                <Link to="/my-account">
-                                    <Button color="inherit">My Account</Button>
-                                </Link>
-                                <Button color="inherit" onClick={this.props.logout}>
-                                    Logout
-                                </Button>
-                            </>
-                        ) : (
-                            <Link to="/login">
-                                <Button color="inherit">Login</Button>
+const NavBar = props => {
+
+    const {isAuthUser, logout} = props;
+
+    return (
+        <AppBar position="static" style={{display: 'flex'}}>
+            <Toolbar>
+                <Typography variant="h6">{description}</Typography>
+                <div style={{marginLeft: 'auto'}}>
+                    {isAuthUser && (
+                        <>
+                            <Link to="/home">
+                                <Button color="inherit">Home</Button>
                             </Link>
-                        )}
-                    </div>
-                </Toolbar>
-            </AppBar>
-        );
-    }
-}
+                            <Link to="/my-account">
+                                <Button color="inherit">My Account</Button>
+                            </Link>
+                            <Button color="inherit" onClick={logout}>
+                                Logout
+                            </Button>
+                        </>
+                    )}
+                </div>
+            </Toolbar>
+        </AppBar>
+    );
+
+};
 
 NavBar.propTypes = {
     isAuthUser: PropTypes.bool,
     logout: PropTypes.func
 };
 
-export default connect(state => ({isAuthUser: state.user.isAuthUser}), { logout })(
-    NavBar
-);
+const mapStateToProps = state => ({
+    isAuthUser: UserSelectors.getIsAuthUser(state)
+});
+
+const mapDispatchToProps = dispatch => ({
+    logout: () => dispatch(logout())
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(NavBar);

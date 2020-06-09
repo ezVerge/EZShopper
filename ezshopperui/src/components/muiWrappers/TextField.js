@@ -1,15 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {TextField as MuiTextField} from '@material-ui/core';
+import {Input} from '@material-ui/core';
+import withError from 'muiWrappers/withError';
 
 const TextField = ({input, useTooltip, ...props}) => (
-    <MuiTextField {...input} {...props}/>
+    <Input {...input} {...props}/>
 );
 
 TextField.propTypes = {
-    meta: PropTypes.object,
     input: PropTypes.object,
+    meta: PropTypes.object,
     useTooltip: PropTypes.bool
 };
 
-export default (TextField);
+export default withError()(TextField);

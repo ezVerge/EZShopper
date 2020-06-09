@@ -1,7 +1,7 @@
 {
   "name": "ez",
-  "description": "ez",
-  "version": "1.0.0",
+  "description": "EZ Shopper",
+  "version": "4.0.0",
   "repository": "https://github.com/ezVerge/ez.git",
   "author": "ezVerge <steveverge@gmail.com>",
   "license": "MIT",
@@ -29,6 +29,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.9.6",
+    "@babel/plugin-proposal-class-properties": "^7.10.1",
     "@babel/plugin-transform-runtime": "^7.9.6",
     "@babel/preset-env": "^7.9.6",
     "@babel/preset-react": "^7.9.4",
@@ -39,6 +40,7 @@
     "chokidar": "^3.4.0",
     "eslint-loader": "^4.0.2",
     "eslint-plugin-react": "^7.19.0",
+    "file-loader": "^6.0.0",
     "html-loader": "^1.1.0",
     "html-webpack-plugin": "^4.3.0",
     "node-dir": "^0.1.17",
