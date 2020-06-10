@@ -1,24 +1,19 @@
 import {apiRequest} from 'store/middleware/apiActions';
 
-export const LOGIN = 'LOGIN';
-export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
-export const LOGOUT = 'LOGOUT';
+export const GET_USER = 'GET_USER';
+export const GET_USER_SUCCESS = 'GET_USER_SUCCESS';
 
-export const login = user => {
+export const getUser = userId => {
     return apiRequest({
-        url: '/login',
-        data: user,
-        onSuccess: loginSuccess,
+        url: '/user',
+        data: userId,
+        onSuccess: getUserSuccess,
         onFailure: () => console.log('Error occurred loading user'),
-        label: LOGIN
+        label: GET_USER
     });
 };
 
-export const loginSuccess = data => ({
-    type: LOGIN_SUCCESS,
+export const getUserSuccess = data => ({
+    type: GET_USER_SUCCESS,
     payload: data
-});
-
-export const logout = () => ({
-    type: LOGOUT
 });

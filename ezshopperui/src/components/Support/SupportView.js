@@ -134,8 +134,8 @@ const mapStateToProps = state => {
     return {
         form: SUPPORT_FORM_NAME,
         initialValues: {
-            name: user.user.name,
-            email: user.user.username,
+            name: user.name,
+            email: user.username,
             subject: '',
             feedback: ''
         }

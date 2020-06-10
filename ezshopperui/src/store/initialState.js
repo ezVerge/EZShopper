@@ -1,9 +1,11 @@
+import constants from 'common/constants';
+
 export default {
-    user: {
-        isAuthUser: !!localStorage.getItem('user'),
-        user: JSON.parse(localStorage.getItem('user')) || {}
+    auth: {
+        isAuthenticated: !!localStorage.getItem(constants.localStorage.USER)
     },
     ui: {
         isLoading: false
-    }
+    },
+    user: JSON.parse(localStorage.getItem(constants.localStorage.USER)) || {}
 };

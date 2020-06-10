@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Grid, withStyles} from '@material-ui/core';
+import {Grid, List, ListItem, ListItemText, ListSubheader, withStyles} from '@material-ui/core';
 
 const HomePage = props => {
 
@@ -8,7 +8,17 @@ const HomePage = props => {
 
     return (
         <Grid item className={classes.grid}>
-            <p>Home</p>
+            <List className={classes.list}>
+                <ListSubheader className={classes.listSubHeader}>Members</ListSubheader>
+                <ListItem button> {/*  onClick={() => onHandleClickItem(item.worklistItemId)} */}
+                    <ListItemText>
+                        Item 1
+                    </ListItemText>
+                    <ListItemText>
+                        Item 2
+                    </ListItemText>
+                </ListItem>
+            </List>
         </Grid>
     );
 
@@ -16,7 +26,16 @@ const HomePage = props => {
 
 const styles = () => ({
     grid: {
-        flex: 1
+        display: 'flex',
+        flex: 1,
+        flexDirection: 'column',
+        justifyContent: 'center'
+    },
+    list: {
+
+    },
+    listSubHeader: {
+
     }
 });
 

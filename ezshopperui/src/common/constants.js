@@ -18,6 +18,10 @@ export default {
 
     content: {
         SUPPORT: 'Our dedicated support team is looking forward to answering all your needs and concerns.'
+    },
+
+    localStorage: {
+        USER: 'user'
     }
 
 };

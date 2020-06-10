@@ -9,7 +9,7 @@ const getRootStateUser = state => get(state, 'user', emptyObject);
 const UserSelectorFactory = getUser => ({
     getUser,
 
-    getIsAuthUser: createSelector(getUser, user => Boolean(get(user, 'isAuthUser', false)))
+    getFirstName: createSelector(getUser, user => get(user, 'firstName', ''))
 });
 
 const UserSelectors = UserSelectorFactory(getRootStateUser);

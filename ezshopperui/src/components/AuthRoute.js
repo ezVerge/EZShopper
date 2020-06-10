@@ -2,15 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {Redirect, Route} from 'react-router';
+import AuthSelectors from 'store/auth/authSelectors';
 
 const AuthRoute = props => {
 
-    const {isAuthUser, type} = props;
+    const {isAuthenticated, type} = props;
 
-    if (type === 'guest' && isAuthUser) {
+    if (type === 'guest' && isAuthenticated) {
         return <Redirect to="/" />;
     }
-    else if (type === 'private' && !isAuthUser) {
+    else if (type === 'private' && !isAuthenticated) {
         return <Redirect to="/login" />;
     }
 
@@ -19,12 +20,12 @@ const AuthRoute = props => {
 };
 
 AuthRoute.propTypes = {
-    isAuthUser: PropTypes.bool,
+    isAuthenticated: PropTypes.bool,
     type: PropTypes.string
 };
 
 const mapStateToProps = state => ({
-    isAuthUser: state.user.isAuthUser
+    isAuthenticated: AuthSelectors.getIsAuthenticated(state)
 });
 
 export default connect(mapStateToProps)(AuthRoute);
