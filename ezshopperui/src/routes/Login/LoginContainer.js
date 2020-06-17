@@ -6,11 +6,10 @@ import {withStyles} from '@material-ui/core';
 import {login} from 'store/auth/authActions';
 import UISelector from 'store/ui/uiSelectors';
 import Login, {LOGIN_FORM_NAME} from 'routes/Login/LoginView';
-import AuthSelectors from 'store/auth/authSelectors';
 
 const LoginContainer = props => {
 
-    const {classes, login, isFormDirty, isFormValid, isAuthenticated} = props;
+    const {classes, login, isFormDirty, isFormValid} = props;
 
     const submitForm = values => {
         if (!isFormValid) { // add back after debug (and remove initialValues)    || !isFormDirty
@@ -59,15 +58,13 @@ LoginContainer.propTypes = {
     classes: PropTypes.object,
     login: PropTypes.func,
     isFormDirty: PropTypes.bool,
-    isFormValid: PropTypes.bool,
-    isAuthenticated: PropTypes.bool
+    isFormValid: PropTypes.bool
 };
 
 const mapStateToProps = state => ({
     isLoading: UISelector.getIsLoading(state),
     isFormDirty: isDirty(LOGIN_FORM_NAME)(state),
-    isFormValid: isValid(LOGIN_FORM_NAME)(state),
-    isAuthenticated: AuthSelectors.getIsAuthenticated(state)
+    isFormValid: isValid(LOGIN_FORM_NAME)(state)
 });
 
 const mapDispatchToProps = dispatch => ({

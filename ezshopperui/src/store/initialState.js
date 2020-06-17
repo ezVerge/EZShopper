@@ -7,5 +7,7 @@ export default {
     ui: {
         isLoading: false
     },
-    user: JSON.parse(localStorage.getItem(constants.localStorage.USER)) || {}
+    user: JSON.parse(localStorage.getItem(constants.localStorage.USER)) || {},
+    meal: {meals: []},
+    stores: {}
 };

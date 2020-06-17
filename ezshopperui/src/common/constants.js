@@ -13,7 +13,9 @@ export default {
         SUBMIT: 'Submit',
         CANCELING: 'Canceling',
         SUBMITTING: 'Submitting',
-        FORGOT_PASSWORD: 'Forgot password?'
+        FORGOT_PASSWORD: 'Forgot password?',
+        ITEM: 'Item',
+        COMMENTS: 'Comments'
     },
 
     content: {

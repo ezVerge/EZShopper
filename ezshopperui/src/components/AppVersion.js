@@ -15,7 +15,7 @@ const AppVersion = ({classes, className}) => (
 
 const styles = theme => ({
     root: {
-        padding: `${theme.spacing(1) * .75}px ${theme.spacing(1)}px`
+        padding: `${theme.spacing(1)}px ${theme.spacing(1)}px`
     }
 });
 

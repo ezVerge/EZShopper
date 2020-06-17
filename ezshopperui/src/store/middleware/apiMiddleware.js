@@ -53,6 +53,9 @@ const params = a => {
 };
 
 export const apiMiddleware = ({dispatch}) => next => async action => {
+
+    if (!action) {return;}
+
     next(action);
 
     if (action.type !== API_REQUEST) {return next;}
@@ -65,7 +68,7 @@ export const apiMiddleware = ({dispatch}) => next => async action => {
         data: null,
         accessToken: null,
         onSuccess: () => {},
-        onFailure: () => {},
+        onFailure: error => console.log('Unhandled error occurred:\n', error),
         label: '',
         headers: new Headers()
     };
@@ -104,6 +107,9 @@ export const apiMiddleware = ({dispatch}) => next => async action => {
 
     try {
         const response = await fetch(fullyQualifiedUrl, options);
+        if (response.status === 404) {
+            throw new Error('404');
+        }
         // const result = fetch(fullyQualifiedUrl, options)
         //     .then(response => response.json());
         // todo: check return code, etc.
@@ -113,11 +119,10 @@ export const apiMiddleware = ({dispatch}) => next => async action => {
         dispatch(onSuccess(result));
     }
     catch (error) {
-        console.log(error);
         dispatch(onFailure(error));
     }
     finally {
-        dispatch(setLoader(false));
+        // dispatch(setLoader(false));
     }
 
 };

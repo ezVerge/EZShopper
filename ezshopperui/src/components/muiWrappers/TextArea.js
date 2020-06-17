@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import PropTypes from 'prop-types';
-import { FormControl, FormHelperText, Input, InputLabel, withStyles } from '@material-ui/core';
+import {FormControl, FormHelperText, Input, InputLabel, withStyles} from '@material-ui/core';
 
 const TextArea = ({classes, input, placeholder, label, disabled, required, meta, charsMax, onChange, fullWidth, ...props}) => {
 

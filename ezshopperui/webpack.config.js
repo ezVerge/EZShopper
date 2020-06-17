@@ -94,7 +94,6 @@ module.exports = env => {
                 'common': `${common.path.sourcePath}/common`,
                 'components': `${common.path.sourcePath}/components`,
                 'muiWrappers': `${common.path.sourcePath}/components/MuiWrappers`,
-                'helpers': `${common.path.sourcePath}/helpers`,
                 'img': `${common.path.sourcePath}/media/img`,
                 'routes': `${common.path.sourcePath}/routes`,
                 'store': `${common.path.sourcePath}/store`

@@ -34,6 +34,12 @@ namespace EZShopper.Controllers
             return Ok(_context.User.Where(u => u.Id == userId).First());
         }
 
+        [HttpGet("meals")]
+        public ActionResult GetMeals([FromQuery] int userId)
+        {
+            return Ok(_context.Meal.Where(m => m.UserId == userId));
+        }
+
         //[HttpGet("lists")]
         //public IActionResult GetListsByUser([FromQuery] int userId)
         //{

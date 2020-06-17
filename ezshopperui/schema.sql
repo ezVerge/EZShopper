@@ -128,6 +128,18 @@ BEGIN
 	IF @@ERROR = 0 PRINT 'Created table list';
 END
 
+IF NOT EXISTS (SELECT * FROM SYSOBJECTS WHERE name = 'meal' AND xtype='U')
+BEGIN
+	CREATE TABLE meal (
+		id INT IDENTITY(1, 1) PRIMARY KEY,
+		[name] NVARCHAR(100),
+		comments NVARCHAR(MAX),
+		userId INT,
+		CONSTRAINT fk_meal_user FOREIGN KEY (userId) REFERENCES [user] (id),
+	);
+	IF @@ERROR = 0 PRINT 'Created table meal';
+END
+
 SET NOCOUNT ON;
 
 IF NOT EXISTS (SELECT * FROM [user] WHERE username = 'steveverge@gmail.com')
@@ -135,4 +147,17 @@ BEGIN
 	INSERT INTO [user] (username, [password], [name], preferredStoreId, joined, [enabled])
 	VALUES ('steveverge@gmail.com', 'stevev', 'Steve', 1, CONVERT(DATETIME2, '1968-11-18'), 1);
 	IF @@ERROR = 0 PRINT 'Inserted initial user';
+END
+
+IF NOT EXISTS (SELECT * FROM meal WHERE id = 1)
+BEGIN
+	INSERT INTO meal ([name], comments, userId)
+	VALUES ('Spaghetti & Meatballs', 'mmm, mmm good', 1);
+	IF @@ERROR = 0 PRINT 'Inserted meal #1';
+END
+IF NOT EXISTS (SELECT * FROM meal WHERE id = 2)
+BEGIN
+	INSERT INTO meal ([name], comments, userId)
+	VALUES ('Steak & Potatoes', 'beefy and hearty', 1);
+	IF @@ERROR = 0 PRINT 'Inserted meal #2';
 END
