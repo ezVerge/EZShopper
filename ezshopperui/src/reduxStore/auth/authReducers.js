@@ -1,5 +1,5 @@
-import initialState from 'store/initialState';
-import {LOGIN_SUCCESS, LOGOUT} from 'store/auth/authActions';
+import initialState from 'reduxStore/initialState';
+import {LOGIN_SUCCESS, LOGOUT} from 'reduxStore/auth/authActions';
 
 const authReducers = (state = initialState.auth, action) => {
     switch (action.type) {

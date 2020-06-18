@@ -96,7 +96,7 @@ module.exports = env => {
                 'muiWrappers': `${common.path.sourcePath}/components/MuiWrappers`,
                 'img': `${common.path.sourcePath}/media/img`,
                 'routes': `${common.path.sourcePath}/routes`,
-                'store': `${common.path.sourcePath}/store`
+                'reduxStore': `${common.path.sourcePath}/reduxStore`
             }
         },
         watchOptions: {

@@ -6,7 +6,6 @@ const MealListView = props => {
 
     const {classes, meals} = props;
 
-    console.log(meals);
     return (
         <Grid container className={classes.grid} direction={'column'}>
             <Typography className={classes.mealsHeader}>

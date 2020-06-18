@@ -1,4 +1,4 @@
-import {apiRequest} from 'store/middleware/apiActions';
+import {apiRequest} from 'reduxStore/middleware/apiActions';
 
 export const LOGIN = 'LOGIN';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';

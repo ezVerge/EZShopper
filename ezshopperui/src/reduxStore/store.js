@@ -1,6 +1,6 @@
 import {createStore, applyMiddleware, compose} from 'redux';
-import rootReducer from 'store/rootReducer';
-import {apiMiddleware} from 'store/middleware/apiMiddleware';
+import rootReducer from 'reduxStore/rootReducer';
+import {apiMiddleware} from 'reduxStore/middleware/apiMiddleware';
 
 const initialState = {};
 

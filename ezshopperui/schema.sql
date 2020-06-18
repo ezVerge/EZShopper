@@ -40,7 +40,7 @@ BEGIN
 	IF @@ERROR = 0 PRINT 'Created table state';
 END
 
-IF NOT EXISTS (SELECT * FROM SYSOBJECTS WHERE name = 'store' AND xtype='U')
+IF NOT EXISTS (SELECT * FROM SYSOBJECTS WHERE name = 'reduxStore' AND xtype='U')
 BEGIN
 	CREATE TABLE store (
 		id INT IDENTITY(1, 1) PRIMARY KEY,
@@ -54,7 +54,7 @@ BEGIN
 		CONSTRAINT fk_store_state FOREIGN KEY (stateId) REFERENCES [state] (id),
 		CONSTRAINT fk_store_user FOREIGN KEY (userId) REFERENCES [user] (id)
 	);
-	IF @@ERROR = 0 PRINT 'Created table store';
+	IF @@ERROR = 0 PRINT 'Created table reduxStore';
 END
 
 IF NOT EXISTS (SELECT * FROM SYSOBJECTS WHERE name = 'aisle' AND xtype='U')
@@ -86,10 +86,11 @@ BEGIN
 	CREATE TABLE item (
 		id INT IDENTITY(1, 1) PRIMARY KEY,
 		item NVARCHAR(50),
-		aisle INT,
+		aisleId INT,
 		userId INT,
 		storeId INT,
 		deptId INT,
+		CONSTRAINT fk_item_aisle FOREIGN KEY (aisleId) REFERENCES [aisle] (id),
 		CONSTRAINT fk_item_user FOREIGN KEY (userId) REFERENCES [user] (id),
 		CONSTRAINT fk_item_store FOREIGN KEY (storeId) REFERENCES store (id),
 		CONSTRAINT fk_item_dept FOREIGN KEY (deptId) REFERENCES dept (id)
@@ -140,24 +141,71 @@ BEGIN
 	IF @@ERROR = 0 PRINT 'Created table meal';
 END
 
+IF NOT EXISTS (SELECT * FROM SYSOBJECTS WHERE name = 'mealItem' AND xtype='U')
+BEGIN
+	CREATE TABLE mealItem (
+		id INT IDENTITY(1, 1) PRIMARY KEY,
+		itemId INT,
+		quantity NVARCHAR(MAX),
+		comments NVARCHAR(MAX)
+		CONSTRAINT fk_mealItem_item FOREIGN KEY (itemId) REFERENCES [item] (id),
+	);
+	IF @@ERROR = 0 PRINT 'Created table mealItem';
+END
+
 SET NOCOUNT ON;
 
 IF NOT EXISTS (SELECT * FROM [user] WHERE username = 'steveverge@gmail.com')
 BEGIN
 	INSERT INTO [user] (username, [password], [name], preferredStoreId, joined, [enabled])
 	VALUES ('steveverge@gmail.com', 'stevev', 'Steve', 1, CONVERT(DATETIME2, '1968-11-18'), 1);
-	IF @@ERROR = 0 PRINT 'Inserted initial user';
+	IF @@ERROR = 0 PRINT 'Inserted user';
 END
 
-IF NOT EXISTS (SELECT * FROM meal WHERE id = 1)
-BEGIN
+	INSERT INTO [state] (code, [name])
+	VALUES ('MA', 'Massachusetts');
+	IF @@ERROR = 0 PRINT 'Inserted state';
+
+	INSERT INTO store ([name], street, city, stateId, zip, userId, totalAisles)
+	VALUES ('Big Y', '310 Easton Drive', 'Easton', 1, '02049', 1, 16);
+	IF @@ERROR = 0 PRINT 'Inserted reduxStore';
+
+	INSERT INTO aisle (item, aisle, storeId)
+	VALUES ('Pasta', 8, 1);
+	IF @@ERROR = 0 PRINT 'Inserted aisle #1';
+
+	INSERT INTO aisle (item, aisle, storeId)
+	VALUES ('Frozen', 6, 1);
+	IF @@ERROR = 0 PRINT 'Inserted aisle #2';
+
+	INSERT INTO dept ([name], grocery, storeId)
+	VALUES ('Grocery', 1, 1);
+	IF @@ERROR = 0 PRINT 'Inserted dept';
+
+	INSERT INTO item (item, aisleId, userId, storeId, deptId)
+	VALUES ('Spaghetti', 1, 1, 1, 1);
+	IF @@ERROR = 0 PRINT 'Inserted item #1';
+
+	INSERT INTO item (item, aisleId, userId, storeId, deptId)
+	VALUES ('Meatballs', 2, 1, 1, 1);
+	IF @@ERROR = 0 PRINT 'Inserted item #2';
+
 	INSERT INTO meal ([name], comments, userId)
 	VALUES ('Spaghetti & Meatballs', 'mmm, mmm good', 1);
 	IF @@ERROR = 0 PRINT 'Inserted meal #1';
-END
-IF NOT EXISTS (SELECT * FROM meal WHERE id = 2)
-BEGIN
+
 	INSERT INTO meal ([name], comments, userId)
 	VALUES ('Steak & Potatoes', 'beefy and hearty', 1);
 	IF @@ERROR = 0 PRINT 'Inserted meal #2';
-END
+
+	INSERT INTO mealItem (itemId, quantity, comments)
+	VALUES (1, '1', 'Prince, Angel Hair');
+	IF @@ERROR = 0 PRINT 'Inserted mealItem #1';
+
+	INSERT INTO mealItem (itemId, quantity, comments)
+	VALUES (2, '6', 'Big Y, frozen');
+	IF @@ERROR = 0 PRINT 'Inserted mealItem #2';
+
+	INSERT INTO list (quantity, [name], comments, added, active, userId, storeId)
+	VALUES (1, 'Eggs', '1/2 dozen', GETDATE(), 1, 1, 1);
+	IF @@ERROR = 0 PRINT 'Inserted list item';

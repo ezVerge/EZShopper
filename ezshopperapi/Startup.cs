@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 namespace EZShopper
 {
@@ -36,6 +37,13 @@ namespace EZShopper
             services.AddDbContext<EZShopperContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+            //services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+            //.AddJwtBearer(options =>
+            //{
+            //    options.Authority = "{yourAuthorizationServerAddress}";
+            //    options.Audience = "{yourAudience}";
+            //});
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -54,6 +62,7 @@ namespace EZShopper
             app.UseCors("CorsPolicy");
 
             app.UseHttpsRedirection();
+            //app.UseAuthentication();
             app.UseMvc();
         }
     }

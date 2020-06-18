@@ -1,5 +1,5 @@
-import initialState from 'store/initialState';
-import {SET_LOADER} from 'store/ui/uiActions';
+import initialState from 'reduxStore/initialState';
+import {SET_LOADER} from 'reduxStore/ui/uiActions';
 
 const uiReducer = (state = initialState.ui, action) => {
     switch (action.type) {

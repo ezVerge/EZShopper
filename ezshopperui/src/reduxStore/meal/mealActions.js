@@ -1,4 +1,4 @@
-import {apiRequest} from 'store/middleware/apiActions';
+import {apiRequest} from 'reduxStore/middleware/apiActions';
 
 export const GET_MEALS = 'GET_MEALS';
 export const GET_MEALS_SUCCESS = 'GET_MEALS_SUCCESS';
@@ -8,7 +8,7 @@ export const getMeals = () => {
         url: '/meals',
         data: {userId: 1},
         onSuccess: getMealsSuccess,
-        onFailure: error => console.log('Error occurred loading meal:\n', error),
+        onFailure: error => console.log('Error occurred loading meals:\n', error),
         label: GET_MEALS
     });
 };

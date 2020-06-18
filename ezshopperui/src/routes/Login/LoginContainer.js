@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {isDirty, isValid} from 'redux-form';
 import {withStyles} from '@material-ui/core';
-import {login} from 'store/auth/authActions';
-import UISelector from 'store/ui/uiSelectors';
+import {login} from 'reduxStore/auth/authActions';
+import UISelector from 'reduxStore/ui/uiSelectors';
 import Login, {LOGIN_FORM_NAME} from 'routes/Login/LoginView';
 
 const LoginContainer = props => {

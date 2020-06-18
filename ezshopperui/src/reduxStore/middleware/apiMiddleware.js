@@ -1,6 +1,6 @@
 import 'isomorphic-fetch';
-import {API_REQUEST} from 'store/middleware/apiActions';
-import {setLoader} from 'store/ui/uiActions';
+import {API_REQUEST} from 'reduxStore/middleware/apiActions';
+import {setLoader} from 'reduxStore/ui/uiActions';
 
 // const SERVER_URL = 'http://192.168.1.250:32781/ezshopper'; // nas
 const SERVER_URL = 'https://localhost:44323/ezshopper'; // local

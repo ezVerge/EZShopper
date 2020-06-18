@@ -6,7 +6,7 @@ import {withStyles} from '@material-ui/core';
 import Support from 'components/Support/SupportView';
 import {SUPPORT_FORM_NAME} from 'components/Support/SupportView';
 
-// import generalService from 'store/general/generalService';
+// import generalService from 'reduxStore/general/generalService';
 
 const SupportContainer = props => {
 

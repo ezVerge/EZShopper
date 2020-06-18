@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import {AppBar, Toolbar, Button, Typography} from '@material-ui/core';
-import {logout} from 'store/auth/authActions';
-import AuthSelectors from 'store/auth/authSelectors';
+import {logout} from 'reduxStore/auth/authActions';
+import AuthSelectors from 'reduxStore/auth/authSelectors';
 import {description} from 'root/package.json';
 
 const NavBar = props => {

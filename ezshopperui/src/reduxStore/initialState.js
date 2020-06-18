@@ -8,6 +8,7 @@ export default {
         isLoading: false
     },
     user: JSON.parse(localStorage.getItem(constants.localStorage.USER)) || {},
+    list: {},
     meal: {meals: []},
     stores: {}
 };

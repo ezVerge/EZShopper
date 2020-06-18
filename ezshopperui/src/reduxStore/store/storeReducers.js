@@ -1,5 +1,5 @@
-import initialState from 'store/initialState';
-import {GET_STORES_SUCCESS} from 'store/stores/storeActions';
+import initialState from 'reduxStore/initialState';
+import {GET_STORES_SUCCESS} from 'reduxStore/store/storeActions';
 
 const storeReducers = (state = initialState.stores, action) => {
     switch (action.type) {

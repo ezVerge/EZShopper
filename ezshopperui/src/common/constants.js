@@ -12,6 +12,8 @@ export default {
         CANCEL: 'Cancel',
         SUBMIT: 'Submit',
         CANCELING: 'Canceling',
+        ADD: 'Add',
+        ADDING: 'Adding',
         SUBMITTING: 'Submitting',
         FORGOT_PASSWORD: 'Forgot password?',
         ITEM: 'Item',

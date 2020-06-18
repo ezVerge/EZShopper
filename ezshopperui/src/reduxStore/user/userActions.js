@@ -1,4 +1,4 @@
-import {apiRequest} from 'store/middleware/apiActions';
+import {apiRequest} from 'reduxStore/middleware/apiActions';
 
 export const GET_USER = 'GET_USER';
 export const GET_USER_SUCCESS = 'GET_USER_SUCCESS';

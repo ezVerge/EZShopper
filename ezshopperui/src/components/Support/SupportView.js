@@ -19,7 +19,7 @@ import validate from 'common/validations';
 import TextField from 'muiWrappers/TextField';
 import TextArea from 'muiWrappers/TextArea';
 import LoadingButton from 'components/LoadingButton';
-import UserSelectors from 'store/user/userSelectors';
+import UserSelectors from 'reduxStore/user/userSelectors';
 
 export const SUPPORT_FORM_NAME = 'SUPPORT';
 

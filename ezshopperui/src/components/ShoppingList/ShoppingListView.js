@@ -5,7 +5,7 @@ import ShoppingListItem from 'components/ShoppingListItem/ShoppingListItemContai
 
 const ShoppingListView = props => {
 
-    const {classes} = props;
+    const {classes, list} = props;
 
     return (
         <Grid container>
@@ -25,7 +25,8 @@ const ShoppingListView = props => {
 };
 
 ShoppingListView.propTypes = {
-    classes: PropTypes.object
+    classes: PropTypes.object,
+    list: PropTypes.object
 };
 
 export default ShoppingListView;

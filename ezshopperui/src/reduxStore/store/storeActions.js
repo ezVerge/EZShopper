@@ -1,14 +1,14 @@
-import {apiRequest} from 'store/middleware/apiActions';
+import {apiRequest} from 'reduxStore/middleware/apiActions';
 
 export const GET_STORES = 'GET_STORES';
 export const GET_STORES_SUCCESS = 'GET_STORES_SUCCESS';
 
 export const getStores = () => {
     return apiRequest({
-        url: '/stores',
+        url: '/store',
         data: {},
         onSuccess: getStoresSuccess,
-        onFailure: () => console.log('Error occurred loading stores'),
+        onFailure: () => console.log('Error occurred loading store'),
         label: GET_STORES
     });
 };

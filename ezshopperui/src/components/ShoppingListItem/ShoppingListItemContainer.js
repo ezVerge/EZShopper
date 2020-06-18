@@ -3,12 +3,16 @@ import PropTypes from 'prop-types';
 import {withStyles} from '@material-ui/core';
 import ShoppingListItemView from 'components/ShoppingListItem/ShoppingListItemView';
 
+const handleAddItem = () => {
+
+};
+
 const ShoppingListItemContainer = props => {
 
     const {classes} = props;
 
     return (
-        <ShoppingListItemView classes={classes}/>
+        <ShoppingListItemView classes={classes} handleAddItem={handleAddItem}/>
     );
 
 };

@@ -1,10 +1,10 @@
 import React, {useEffect} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import MealList from 'components/MealList/MealListView';
 import {withStyles} from '@material-ui/core';
-import {getMeals} from 'store/meal/mealActions';
-import MealSelectors from 'store/meal/mealSelectors';
+import MealList from 'components/MealList/MealListView';
+import {getMeals} from 'reduxStore/meal/mealActions';
+import MealSelectors from 'reduxStore/meal/mealSelectors';
 
 const MealListContainer = props => {
 

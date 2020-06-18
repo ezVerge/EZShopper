@@ -7,12 +7,13 @@ import {Paper} from '@material-ui/core';
 import Select from 'muiWrappers/Select';
 import TextField from 'muiWrappers/TextField';
 import constants from 'common/constants';
+import LoadingButton from 'components/LoadingButton';
 
 export const SHOPPING_LIST_ITEM_FORM_NAME = 'SHOPPING_LIST_ITEM';
 
 const ShoppingListItemView = props => {
 
-    const {classes} = props;
+    const {classes, handleAddItem} = props;
 
     return (
         <Paper className={classes.itemEntry} elevation={5}>
@@ -32,6 +33,14 @@ const ShoppingListItemView = props => {
                 maxLength={256}
                 // disabled={submitting}
             />
+            <LoadingButton
+                onClick={handleAddItem}
+                type={'button'}
+                variant={'text'}
+                color={'default'}
+                // disabled={submitting}
+                text={constants.labels.ADDING}
+            >{constants.labels.ADD}</LoadingButton>
             <Field
                 component={TextField}
                 name={'comments'}
@@ -47,7 +56,8 @@ const ShoppingListItemView = props => {
 };
 
 ShoppingListItemView.propTypes = {
-    classes: PropTypes.object
+    classes: PropTypes.object,
+    handleAddItem: PropTypes.func
 };
 
 const mapStateToProps = () => ({

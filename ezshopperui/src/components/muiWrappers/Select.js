@@ -25,9 +25,9 @@ const Select = ({classes, input, label, disabled, required, meta, onChange, full
                 onChange={handleChange}
                 {...props}
             >
-                <MenuItem value={1}>1</MenuItem>
-                <MenuItem value={2}>2</MenuItem>
-                <MenuItem value={3}>3</MenuItem>
+                {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map(index => (
+                    <MenuItem key={index} value={index}>{index}</MenuItem>
+                ))}
             </MuiSelect>
             {(meta.touched && meta.invalid) &&
             <FormHelperText className={classes.error}>{meta.error}</FormHelperText>
@@ -38,7 +38,7 @@ const Select = ({classes, input, label, disabled, required, meta, onChange, full
 
 const styles = theme => ({
     formControl: {
-        width: 65
+        width: 75
     },
     error: {
         marginTop: theme.spacing(1)
