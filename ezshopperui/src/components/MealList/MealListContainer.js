@@ -13,7 +13,7 @@ const MealListContainer = props => {
     useEffect(() => {
         getMeals();
         // async function fetchData() {
-        //     await worklistItemService.loadActivityHistory(recordId, workflow.id);
+        //     await getMeals();
         // }
         // fetchData();
     }, []);
@@ -49,7 +49,7 @@ const styles = () => ({
 MealListContainer.propTypes = {
     classes: PropTypes.object,
     getMeals: PropTypes.func,
-    meals: PropTypes.array
+    meals: PropTypes.object
 };
 
 const mapStateToProps = state => ({

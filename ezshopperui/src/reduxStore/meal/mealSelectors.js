@@ -1,15 +1,11 @@
 import {get} from 'lodash';
-import { createSelector } from 'reselect';
 
-const emptyArray = [];
 const emptyObject = {};
 
-const getRootStateMeal = state => get(state, 'meal', emptyObject);
+const getRootStateMeal = state => get(state, 'meals', emptyObject);
 
-const MealSelectorFactory = getMeal => ({
-    getMeal,
-
-    getMeals: createSelector(getMeal, meal => get(meal, 'meals', emptyArray))
+const MealSelectorFactory = getMeals => ({
+    getMeals
 });
 
 const MealSelectors = MealSelectorFactory(getRootStateMeal);

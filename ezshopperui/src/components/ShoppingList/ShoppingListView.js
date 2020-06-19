@@ -12,9 +12,9 @@ const ShoppingListView = props => {
             <ShoppingListItem/>
             <Paper className={classes.paper} elevation={5}>
                 <List>
-                    {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15].map(sectionId => (
-                        <ListItem key={`listItem-${sectionId}`} button>
-                            <ListItemText primary={`Shopping List Item ${sectionId}`} secondary={`Secondary ${sectionId}`}/>
+                    {Object.values(list).map(item => (
+                        <ListItem key={`listItem-${item.id}`} button>
+                            <ListItemText primary={item.name} secondary={item.comments}/>
                         </ListItem>
                     ))}
                 </List>

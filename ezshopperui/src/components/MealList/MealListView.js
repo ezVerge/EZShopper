@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Grid, List, ListItem, ListItemText, Paper, Typography} from '@material-ui/core';
+import {ExpansionPanel, ExpansionPanelDetails, ExpansionPanelSummary, Grid, List, ListItem, ListItemText, Paper, Typography} from '@material-ui/core';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 const MealListView = props => {
 
@@ -13,9 +14,19 @@ const MealListView = props => {
             </Typography>
             <Paper className={classes.paper} elevation={5}>
                 <List className={classes.list}>
-                    {meals.map(meal => (
+                    {Object.values(meals).map(meal => (
                         <ListItem key={`listItem-${meal.id}`} button>
-                            <ListItemText primary={meal.name} secondary={meal.comments}/>
+                            <ExpansionPanel>
+                                <ExpansionPanelSummary expandIcon={<ExpandMoreIcon/>}>
+                                    <ListItemText primary={meal.name} secondary={meal.comments}/>
+                                </ExpansionPanelSummary>
+                                <ExpansionPanelDetails>
+                                    <Typography>
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
+                                        sit amet blandit leo lobortis eget.
+                                    </Typography>
+                                </ExpansionPanelDetails>
+                            </ExpansionPanel>
                         </ListItem>
                     ))}
                 </List>
@@ -27,7 +38,7 @@ const MealListView = props => {
 
 MealListView.propTypes = {
     classes: PropTypes.object,
-    meals: PropTypes.array
+    meals: PropTypes.object
 };
 
 export default MealListView;
