@@ -7,8 +7,8 @@ namespace EZShopper.Models
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public string Aisle { get; set; }
-        public int Userid { get; set; }
+        public int AisleNumber { get; set; }
+        public int UserId { get; set; }
         public int StoreId { get; set; }
         public int DeptId { get; set; }
     }

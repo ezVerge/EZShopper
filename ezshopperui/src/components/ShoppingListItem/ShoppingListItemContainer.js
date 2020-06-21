@@ -1,7 +1,10 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
 import {withStyles} from '@material-ui/core';
 import ShoppingListItemView from 'components/ShoppingListItem/ShoppingListItemView';
+import ItemSelectors from 'reduxStore/item/itemSelectors';
+import {getItems} from 'reduxStore/item/itemActions';
 
 const handleAddItem = () => {
 
@@ -9,10 +12,18 @@ const handleAddItem = () => {
 
 const ShoppingListItemContainer = props => {
 
-    const {classes} = props;
+    const {classes, getItems, items} = props;
+
+    useEffect(() => {
+        getItems();
+        // async function fetchData() {
+        //     await getItems();
+        // }
+        // fetchData();
+    }, []);
 
     return (
-        <ShoppingListItemView classes={classes} handleAddItem={handleAddItem}/>
+        <ShoppingListItemView classes={classes} items={items} handleAddItem={handleAddItem}/>
     );
 
 };
@@ -37,7 +48,17 @@ const styles = theme => ({
 });
 
 ShoppingListItemContainer.propTypes = {
-    classes: PropTypes.object
+    classes: PropTypes.object,
+    getItems: PropTypes.func,
+    items: PropTypes.object
 };
 
-export default (withStyles(styles, {withTheme: true})(ShoppingListItemContainer));
+const mapStateToProps = state => ({
+    items: ItemSelectors.getItems(state)
+});
+
+const mapDispatchToProps = dispatch => ({
+    getItems: () => dispatch(getItems())
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles, {withTheme: true})(ShoppingListItemContainer));

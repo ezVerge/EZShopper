@@ -4,16 +4,17 @@ import {connect} from 'react-redux';
 import {compose} from 'redux';
 import {Field, reduxForm} from 'redux-form';
 import {Paper} from '@material-ui/core';
+import constants from 'common/constants';
 import Select from 'muiWrappers/Select';
 import TextField from 'muiWrappers/TextField';
-import constants from 'common/constants';
+import Autocomplete from 'muiWrappers/Autocomplete';
 import LoadingButton from 'components/LoadingButton';
 
 export const SHOPPING_LIST_ITEM_FORM_NAME = 'SHOPPING_LIST_ITEM';
 
 const ShoppingListItemView = props => {
 
-    const {classes, handleAddItem} = props;
+    const {classes, items, handleAddItem} = props;
 
     return (
         <Paper className={classes.itemEntry} elevation={5}>
@@ -25,7 +26,10 @@ const ShoppingListItemView = props => {
                 // disabled={submitting}
             />
             <Field
-                component={TextField}
+                options={Object.values(items).map(item => item.name)}
+                freeSolo
+                disableClearable
+                component={Autocomplete}
                 name={'item'}
                 label={constants.labels.ITEM}
                 className={classes.inputElement}
@@ -57,6 +61,7 @@ const ShoppingListItemView = props => {
 
 ShoppingListItemView.propTypes = {
     classes: PropTypes.object,
+    items: PropTypes.object,
     handleAddItem: PropTypes.func
 };
 

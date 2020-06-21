@@ -62,7 +62,7 @@ BEGIN
 	CREATE TABLE aisle (
 		id INT IDENTITY(1, 1) PRIMARY KEY,
 		item NVARCHAR(50),
-		aisle INT,
+		aisleNumber INT,
 		storeId INT,
 		CONSTRAINT fk_aisle_store FOREIGN KEY (storeId) REFERENCES store (id)
 	);
@@ -85,12 +85,11 @@ IF NOT EXISTS (SELECT * FROM SYSOBJECTS WHERE name = 'item' AND xtype='U')
 BEGIN
 	CREATE TABLE item (
 		id INT IDENTITY(1, 1) PRIMARY KEY,
-		item NVARCHAR(50),
-		aisleId INT,
+		[name] NVARCHAR(50),
+		aisleNumber INT,
 		userId INT,
 		storeId INT,
 		deptId INT,
-		CONSTRAINT fk_item_aisle FOREIGN KEY (aisleId) REFERENCES [aisle] (id),
 		CONSTRAINT fk_item_user FOREIGN KEY (userId) REFERENCES [user] (id),
 		CONSTRAINT fk_item_store FOREIGN KEY (storeId) REFERENCES store (id),
 		CONSTRAINT fk_item_dept FOREIGN KEY (deptId) REFERENCES dept (id)
@@ -102,7 +101,7 @@ IF NOT EXISTS (SELECT * FROM SYSOBJECTS WHERE name = 'path' AND xtype='U')
 BEGIN
 	CREATE TABLE [path] (
 		id INT IDENTITY(1, 1) PRIMARY KEY,
-		aisle INT,
+		aisleNumber INT,
 		[sequence] INT,
 		deptId INT,
 		storeId INT,
@@ -170,11 +169,11 @@ END
 	VALUES ('Big Y', '310 Easton Drive', 'Easton', 1, '02049', 1, 16);
 	IF @@ERROR = 0 PRINT 'Inserted reduxStore';
 
-	INSERT INTO aisle (item, aisle, storeId)
+	INSERT INTO aisle (item, aisleNumber, storeId)
 	VALUES ('Pasta', 8, 1);
 	IF @@ERROR = 0 PRINT 'Inserted aisle #1';
 
-	INSERT INTO aisle (item, aisle, storeId)
+	INSERT INTO aisle (item, aisleNumber, storeId)
 	VALUES ('Frozen', 6, 1);
 	IF @@ERROR = 0 PRINT 'Inserted aisle #2';
 
@@ -182,11 +181,11 @@ END
 	VALUES ('Grocery', 1, 1);
 	IF @@ERROR = 0 PRINT 'Inserted dept';
 
-	INSERT INTO item (item, aisleId, userId, storeId, deptId)
+	INSERT INTO item ([name], aisleNumber, userId, storeId, deptId)
 	VALUES ('Spaghetti', 1, 1, 1, 1);
 	IF @@ERROR = 0 PRINT 'Inserted item #1';
 
-	INSERT INTO item (item, aisleId, userId, storeId, deptId)
+	INSERT INTO item ([name], aisleNumber, userId, storeId, deptId)
 	VALUES ('Meatballs', 2, 1, 1, 1);
 	IF @@ERROR = 0 PRINT 'Inserted item #2';
 

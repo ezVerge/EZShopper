@@ -52,6 +52,13 @@ namespace EZShopper.Controllers
             return Ok(_context.List.Where(l => l.UserId == userId));
         }
 
+        [HttpGet("items")]
+        public ActionResult GetItems([FromQuery] int userId)
+        {
+            ActionResult x = Ok(_context.Item.Where(i => i.UserId == userId));
+            return Ok(_context.Item.Where(i => i.UserId == userId));
+        }
+
         //[HttpGet("lists")]
         //public IActionResult GetListsByUser([FromQuery] int userId)
         //{

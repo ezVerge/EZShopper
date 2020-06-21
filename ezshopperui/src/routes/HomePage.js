@@ -26,7 +26,7 @@ const HomePage = props => {
 
 const styles = () => ({
     main: {
-        backgroundColor: 'yellow',
+        backgroundColor: 'black',
         display: 'flex',
         flex: 1,
         flexDirection: 'row',
