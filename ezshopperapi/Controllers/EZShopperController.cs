@@ -3,6 +3,7 @@ using System.Linq;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Threading.Tasks;
 
 namespace EZShopper.Controllers
 {
@@ -40,6 +41,19 @@ namespace EZShopper.Controllers
             return Ok(_context.Meal.Where(m => m.UserId == userId));
         }
 
+        //[HttpGet("{meals}")]
+        //public async Task<ActionResult<Meal>> GetMeals(int userId)
+        //{
+        //    var meal = await _context.Meal.FindAsync(userId);
+
+        //    if (meal == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    return meal;
+        //}
+
         [HttpGet("stores")]
         public ActionResult GetStores([FromQuery] int userId)
         {
@@ -55,8 +69,48 @@ namespace EZShopper.Controllers
         [HttpGet("items")]
         public ActionResult GetItems([FromQuery] int userId)
         {
-            ActionResult x = Ok(_context.Item.Where(i => i.UserId == userId));
             return Ok(_context.Item.Where(i => i.UserId == userId));
+        }
+
+        [HttpPost("addItem")]
+        public ActionResult AddItem([FromHeader] Item item)
+        {
+            if (item == null)
+            {
+                return BadRequest();
+            }
+
+            _context.Item.Add(item);
+
+            return Ok(item);
+        }
+
+        //[HttpPost("addItemToList")]
+        //public async Task<ActionResult<List>> AddItemToList(List item)
+        //{
+        //    _context.List.Add(item);
+        //    await _context.SaveChangesAsync();
+
+        //    //return CreatedAtAction(
+        //    //    nameof(GetTodoItem),
+        //    //    new {id = item.Id},
+        //    //    ItemToDTO(todoItem));
+        //}
+
+        [HttpPost("addItemToList")]
+        public async Task<ActionResult<List>> AddItemToList()
+        {
+            List item = new List();
+
+            if (item == null)
+            {
+                return BadRequest();
+            }
+
+            _context.List.Add(item);
+            await _context.SaveChangesAsync();
+
+            return Ok(item);
         }
 
         //[HttpGet("lists")]
