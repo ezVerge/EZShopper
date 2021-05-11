@@ -16,7 +16,7 @@
     "eslint": "6.0.0",
     "immutable": "3.8.2",
     "isomorphic-fetch": "^2.2.1",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.21",
     "moment": "^2.27.0",
     "prop-types": "15.6.0",
     "react": "^16.13.1",
